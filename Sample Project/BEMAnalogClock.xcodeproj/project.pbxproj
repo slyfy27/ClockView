@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		422A690B20CA789B00532F31 /* StringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 422A690A20CA789B00532F31 /* StringView.m */; };
 		4284876320C6D6780030E18F /* MTClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4284876220C6D6780030E18F /* MTClockView.m */; };
 		C343609918BAEB8F0056E6CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C343609818BAEB8F0056E6CE /* Foundation.framework */; };
 		C343609B18BAEB8F0056E6CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C343609A18BAEB8F0056E6CE /* CoreGraphics.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		422A690920CA789B00532F31 /* StringView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringView.h; sourceTree = "<group>"; };
+		422A690A20CA789B00532F31 /* StringView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringView.m; sourceTree = "<group>"; };
 		4284876120C6D6780030E18F /* MTClockView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTClockView.h; sourceTree = "<group>"; };
 		4284876220C6D6780030E18F /* MTClockView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTClockView.m; sourceTree = "<group>"; };
 		C343609518BAEB8F0056E6CE /* BEMAnalogClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BEMAnalogClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,6 +164,8 @@
 			children = (
 				4284876120C6D6780030E18F /* MTClockView.h */,
 				4284876220C6D6780030E18F /* MTClockView.m */,
+				422A690920CA789B00532F31 /* StringView.h */,
+				422A690A20CA789B00532F31 /* StringView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -268,6 +273,7 @@
 				4284876320C6D6780030E18F /* MTClockView.m in Sources */,
 				C34360AF18BAEB900056E6CE /* ViewController.m in Sources */,
 				C34360A918BAEB900056E6CE /* AppDelegate.m in Sources */,
+				422A690B20CA789B00532F31 /* StringView.m in Sources */,
 				C34360A518BAEB900056E6CE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
