@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "MTClockView.h"
 #import "StringView.h"
+#import "FocusSlider.h"
 
 @interface ViewController (){
     CGFloat angle;
@@ -22,6 +23,8 @@
 
 @property (nonatomic, strong) UIView *panView;
 
+//@property (nonatomic, strong) FocusSlider *focusSlider;
+
 @end
 
 @implementation ViewController
@@ -29,28 +32,52 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    angle = 0;
-    _clockView = [[MTClockView alloc] initWithFrame:(CGRect){100, 30, 300, 300}];
-    [self.view addSubview:_clockView];
+    self.navigationController.navigationBarHidden = YES;
     
+//    UILabel *label = [[UILabel alloc] initWithFrame:(CGRect){100,200,30,16}];
+//    label.font = [UIFont systemFontOfSize:15];
+//    label.textColor = [UIColor whiteColor];
+////    label.text = @"0.5";
+//    [self.view addSubview:label];
+//    label.backgroundColor = [UIColor redColor];
+//    UILabel *label1 = [[UILabel alloc] initWithFrame:(CGRect){100,200,30,16}];
+//    label1.font = [UIFont systemFontOfSize:15];
+//    label1.textColor = [UIColor whiteColor];
+////    label1.text = @"0.5";
+//    label1.backgroundColor = [UIColor yellowColor];
+//    [self.view addSubview:label1];
+//    label.layer.anchorPoint = CGPointMake(0, 0.5);
+//    label.transform = CGAffineTransformMakeRotation(M_PI/5);
+    angle = 0;
+    _clockView = [[MTClockView alloc] initWithFrame:(CGRect){100, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.height}];
+//    _clockView = [[MTClockView alloc] initWithFrame:(CGRect){100, 0, 100, 100}];
+    [self.view addSubview:_clockView];
+
     self.panView = [[UIView alloc] initWithFrame:self.clockView.frame];
 //    panView.backgroundColor = [UIColor clearColor];
     self.panView.backgroundColor = [UIColor clearColor];
     self.panView.userInteractionEnabled = YES;
     [self.view.viewForBaselineLayout addSubview:self.panView];
-    
-//    UIRotationGestureRecognizer *rotationGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleClockRotation:)];
-////    rotationGesture.delegate = self;
-//    [panView addGestureRecognizer:rotationGesture];
-    
-    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleClockPan:)];
-    panGesture.delegate = self;
-    [panGesture setMaximumNumberOfTouches:1];
-    [self.panView addGestureRecognizer:panGesture];
-    [self clipBezi];
+
+    UIRotationGestureRecognizer *rotationGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleClockRotation:)];
+//    rotationGesture.delegate = self;
+    [self.panView addGestureRecognizer:rotationGesture];
+
+//    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleClockPan:)];
+//    panGesture.delegate = self;
+//    [panGesture setMaximumNumberOfTouches:1];
+//    [self.panView addGestureRecognizer:panGesture];
+//    [self clipBezi];
     
 //    StringView *sv = [[StringView alloc] initWithFrame:(CGRect){100,200,100,40}];
 //    [self.view addSubview:sv];
+    
+    // upSlider
+//    FocusSlider *upCircularSlider = [[FocusSlider alloc]initWithFrame:CGRectMake(100, 100, 400, 250)];
+//
+//    upCircularSlider.lineWidth = 10;
+//
+//    [self.view addSubview:upCircularSlider];
 }
 
 - (void)clipBezi{

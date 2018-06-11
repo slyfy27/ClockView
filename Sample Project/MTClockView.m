@@ -79,11 +79,80 @@
         NSString *hourNumber = [NSString stringWithFormat:@"0.%d",i];
         CGFloat labelX = center.x + (markingDistanceFromCenter - digitFont.lineHeight/2.0f) * cos((M_PI/180) * (i+offset) * 36 - M_PI);
         CGFloat labelY = center.y + - 1 * (markingDistanceFromCenter - digitFont.lineHeight/2.0f) * sin((M_PI/180)*(i+offset) * 36);
+//        if (i == 1) {
+//            CGContextConcatCTM(ctx, CGAffineTransformMakeRotation(M_PI/5));
+//            labelX = center.x + (markingDistanceFromCenter - digitFont.lineHeight/2.0f) * cos((M_PI/180) * (i+offset) * 36 - M_PI) * cos((M_PI/180) * (i+offset) * 36 - M_PI);
+//            labelY = center.y + - 1 * (markingDistanceFromCenter - digitFont.lineHeight/2.0f) * sin((M_PI/180)*(i+offset) * (72));
+////            labelX += 38;
+////            labelY -= 44;
+//        }
+//        if (i == 2) {
+//            CGContextConcatCTM(ctx, CGAffineTransformMakeRotation(M_PI * 2/5));
+//            labelX -= 51;
+//            labelY -= 132;
+//        }
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(labelX - digitFont.lineHeight/2,labelY - digitFont.lineHeight/2,15,digitFont.lineHeight)];
         if (i == 1) {
-//            CGContextConcatCTM(ctx, CGAffineTransformMakeRotation(M_PI/10));
-//            labelX += 15;
+            label.frame = CGRectMake(labelX - digitFont.lineHeight/2,labelY - digitFont.lineHeight/2 + 0.5,15,digitFont.lineHeight);
         }
-        [hourNumber drawInRect:CGRectMake(labelX - digitFont.lineHeight/2.0f,labelY - digitFont.lineHeight/2.0f,30,digitFont.lineHeight) withAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: digitFont}];
+        if (i == 2) {
+            label.frame = CGRectMake(labelX - digitFont.lineHeight/2 - 0.5,labelY - digitFont.lineHeight/2 + 1.5,15,digitFont.lineHeight);
+        }
+        if (i == 3) {
+            label.frame = CGRectMake(labelX - digitFont.lineHeight/2 - 1.5,labelY - digitFont.lineHeight/2 + 3,15,digitFont.lineHeight);
+        }
+        if (i == 4) {
+            label.frame = CGRectMake(labelX - digitFont.lineHeight/2 - 3.5,labelY - digitFont.lineHeight/2 + 2.5,15,digitFont.lineHeight);
+        }
+        if (i == 5) {
+            label.frame = CGRectMake(labelX - digitFont.lineHeight/2 - 5,labelY - digitFont.lineHeight/2,15,digitFont.lineHeight);
+        }
+        if (i == 6) {
+            label.frame = CGRectMake(labelX - digitFont.lineHeight/2 - 4.5,labelY - digitFont.lineHeight/2,15,digitFont.lineHeight);
+        }
+        if (i == 7) {
+            label.frame = CGRectMake(labelX - digitFont.lineHeight/2 - 3.5,labelY - digitFont.lineHeight/2 - 1,15,digitFont.lineHeight);
+        }
+        if (i == 8) {
+            label.frame = CGRectMake(labelX - digitFont.lineHeight/2 - 1.5,labelY - digitFont.lineHeight/2 - 1,15,digitFont.lineHeight);
+        }
+        if (i == 9) {
+            label.frame = CGRectMake(labelX - digitFont.lineHeight/2,labelY - digitFont.lineHeight/2 - 0.5,15,digitFont.lineHeight);
+        }
+        label.textColor = [UIColor whiteColor];
+        label.font = digitFont;
+        label.text = hourNumber;
+//        label.layer.anchorPoint = CGPointMake(0, 0.5);
+//        [hourNumber drawInRect:CGRectMake(labelX - digitFont.lineHeight/2.0f,labelY - digitFont.lineHeight/2.0f,30,digitFont.lineHeight) withAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: digitFont}];
+        
+//        在 iOS 8 中，有个新选项可以移动镜片的位置，从较近物体的 0.0 到较远物体的 1.0 (不是指无限远)。
+//        
+//        ... // 锁定，配置
+//        var lensPosition:Float = ... // 0.0 到 1.0的float
+//        currentCameraDevice.setFocusModeLockedWithLensPosition(lensPosition) {
+//            (timestamp:CMTime) -> Void in
+//            // timestamp 对应于应用了镜片位置的第一张图像缓存区
+//        }
+//        ... // 解锁
+        
+//        在 iOS 设备上，镜头上的光圈是固定的 (在 iPhone 5s 以及其之后的光圈值是 f/2.2，之前的是 f/2.4)，因此只有改变曝光时间和传感器的灵敏度才能对图片的亮度进行调整，从而达到合适的效果。至于对焦，我们可以选择连续自动曝光，在“感兴趣的点”一次性自动曝光，或者手动曝光。除了指定“感兴趣的点”，我们可以通过设置曝光补偿 (compensation) 修改自动曝光，也就是曝光档位的目标偏移。目标偏移在曝光档数里有讲到，它的范围在 minExposureTargetBias 与 maxExposureTargetBias 之间，0为默认值 (即没有“补偿”)。
+//
+//        var exposureBias:Float = ... // 在 minExposureTargetBias 和 maxExposureTargetBias 之间的值
+//        ... // 锁定，配置
+//        currentDevice.setExposureTargetBias(exposureBias) { (time:CMTime) -> Void in
+//        }
+//        ... // 解锁
+//        使用手动曝光，我们可以设置 ISO 和曝光时间，两者的值都必须在设备当前格式所指定的范围内。
+//
+//        var activeFormat = currentDevice.activeFormat
+//        var duration:CTime = ... //在activeFormat.minExposureDuration 和 activeFormat.maxExposureDuration 之间的值，或用 AVCaptureExposureDurationCurrent 表示不变
+//        var iso:Float = ... // 在 activeFormat.minISO 和 activeFormat.maxISO 之间的值，或用 AVCaptureISOCurrent 表示不变
+//        ... // 锁定，配置
+//        currentDevice.setExposureModeCustomWithDuration(duration, ISO: iso) { (time:CMTime) -> Void in
+//        }
+//        ... // 解锁
+        label.transform = CGAffineTransformMakeRotation(M_PI/5 * i);
+        [self addSubview:label];
         CGContextRestoreGState(ctx);
         NSLog(@"x:%f\ny:%f",labelX,labelY);
     }
